@@ -7,7 +7,7 @@ resource "aws_instance" "web_zone_a" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
 
-  subnet_id       = aws_subnet.private[count.index].id
+  subnet_id       = var.private_subnets[count.index % length(var.private_subnets)].id
   vpc_security_group_ids = [aws_security_group.ec2_sg.id]
 
   user_data = <<-EOF

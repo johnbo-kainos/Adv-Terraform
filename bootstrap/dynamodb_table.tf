@@ -1,3 +1,4 @@
+// Dynamodb table used to keep track of locks on the tfstate file in s3
 resource "aws_dynamodb_table" "terraform_locks" {
   name         = "terraform-up-and-running-locks"
   billing_mode = "PAY_PER_REQUEST"

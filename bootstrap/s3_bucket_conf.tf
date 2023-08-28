@@ -1,3 +1,4 @@
+// S3 Bucket that will hold the remote tfstate file
 resource "aws_s3_bucket_versioning" "enabled" {
   bucket = aws_s3_bucket.terraform_state.id
   versioning_configuration {
@@ -5,6 +6,7 @@ resource "aws_s3_bucket_versioning" "enabled" {
   }
 }
 
+// Enabling Server-Side encryption on the bucket
 resource "aws_s3_bucket_server_side_encryption_configuration" "default" {
   bucket = aws_s3_bucket.terraform_state.id
 
@@ -15,6 +17,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "default" {
   }
 }
 
+// Blocking public access to s3
 resource "aws_s3_bucket_public_access_block" "public_access" {
   bucket                  = aws_s3_bucket.terraform_state.id
   block_public_acls       = true
@@ -23,6 +26,7 @@ resource "aws_s3_bucket_public_access_block" "public_access" {
   restrict_public_buckets = true
 }
 
+// Bucket policy to allow only users authenicated with the KPA Belfast AWS Account to have access to the S3 bucket
 resource "aws_s3_bucket_policy" "bucket_policy" {
   bucket = aws_s3_bucket.terraform_state.id
 

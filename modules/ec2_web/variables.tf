@@ -13,14 +13,15 @@ variable "environment" {
   description = "Deployment environment for this module"
 }
 
-variable "internal_domain_name" {
-  type        = string
-  description = "Internal domain name"
+variable "instance_count" {
+  type        = number
+  description = "Numner of EC2 instances"
 }
 
-variable "vpc_cidr_block" {
+variable "instance_type" {
   type        = string
-  description = "CIDR block of the VPC"
+  description = "Numner of EC2 instances"
+  default     = "t2.micro"
 }
 
 variable "public_subnets" {
@@ -33,7 +34,12 @@ variable "private_subnets" {
   description = "List of private subnets."
 }
 
-variable "nat_gateway_count" {
-  type        = number
-  description = "Number of NAT Gateways"
+variable "vpc_id" {
+type        = string
+  description = "List of private subnets."
+}
+
+variable "sg_inbound_port" {
+type        = number
+  description = "List of private subnets."
 }
