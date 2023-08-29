@@ -6,7 +6,7 @@ variable "project" {
 variable "aws_region" {
   type        = string
   description = "The AWS Region into which we are bootstrapping."
-  default = "eu-west-1"
+  default     = "eu-west-1"
 }
 
 variable "environment" {

@@ -1,8 +1,9 @@
 resource "aws_s3_bucket" "terraform_state" {
   bucket = local.bucket_name
 
- lifecycle {
-   prevent_destroy = true
+  lifecycle {
+    prevent_destroy = true
+    create_before_destroy = true
   }
 
   tags = merge(

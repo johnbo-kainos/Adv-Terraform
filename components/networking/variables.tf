@@ -26,7 +26,15 @@ variable "public_subnets" {
   type = list(string)
 }
 
-variable "private_subnets" {
+variable "web_subnets" {
+  type = list(string)
+}
+
+variable "rds_subnets" {
+  type = list(string)
+}
+
+variable "integration_subnets" {
   type = list(string)
 }
 
