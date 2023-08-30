@@ -6,7 +6,7 @@ variable "project" {
 variable "aws_region" {
   type        = string
   description = "The AWS Region into which we are bootstrapping."
-  default = "eu-west-1"
+  default     = "eu-west-1"
 }
 
 variable "environment" {
@@ -24,4 +24,5 @@ variable "component" {
 variable "aws_account_id" {
   type        = string
   description = "ID of the AWS Account"
+  default     = "138588690193"
 }

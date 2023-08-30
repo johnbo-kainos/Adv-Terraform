@@ -8,10 +8,19 @@ resource "aws_route_table_association" "public" {
 }
 
 # Associate correct route tables with subnets
-resource "aws_route_table_association" "private" {
-  count = length(aws_subnet.private)
+resource "aws_route_table_association" "private_web" {
+  count = length(aws_subnet.web)
 
-  subnet_id      = aws_subnet.private[count.index].id
+  subnet_id      = aws_subnet.web[count.index].id
+  route_table_id = element(aws_route_table.private.*.id, count.index)
+
+  depends_on = [aws_route_table.private]
+}
+
+resource "aws_route_table_association" "private_rds" {
+  count = length(aws_subnet.rds)
+
+  subnet_id      = aws_subnet.rds[count.index].id
   route_table_id = element(aws_route_table.private.*.id, count.index)
 
   depends_on = [aws_route_table.private]

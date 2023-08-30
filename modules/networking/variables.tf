@@ -28,7 +28,12 @@ variable "public_subnets" {
   description = "List of public subnets."
 }
 
-variable "private_subnets" {
+variable "web_subnets" {
+  type        = list(string)
+  description = "List of private subnets."
+}
+
+variable "rds_subnets" {
   type        = list(string)
   description = "List of private subnets."
 }

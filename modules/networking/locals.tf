@@ -8,12 +8,12 @@ locals {
     Environment = var.environment
   }
 
-  # Create subnet availability zone map
+  # Create subnet availability zone map using the web cidr ranges - gets all the zones in the region
 
   subnet_az_map = {
     for idx, az in data.aws_availability_zones.available.names : az => {
       route_table_id = element(aws_route_table.private, idx).id
-      subnet_count   = length([for s in aws_subnet.private : s if s.availability_zone == az])
+      subnet_count   = length([for s in aws_subnet.web : s if s.availability_zone == az])
     }
   }
 
