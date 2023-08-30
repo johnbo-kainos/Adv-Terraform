@@ -1,16 +1,60 @@
-aws_account_id       = ""
-project              = "kpa23"
-aws_region           = "eu-west-1"
-environment          = "instructor-prd"
-internal_domain_name = "instructor-prd.local"
+//Global Config
+aws_account_id  = "<aws_account_id>"
+project         = "kpa23"
+aws_region      = "eu-west-1"
+environment     = "<your_env_name>"
+s3_state_bucket = "<your_bootstrap_s3_bucket_name>"
 
-vpc_cidr_block = 
+//Networking Config
+internal_domain_name = "<your_dns_name>.local"
+vpc_cidr_block       = "10.0.0.0/16"
+nat_gateway_count    = 2
 
 public_subnets = [
-
-]
-private_subnets = [
-
+  "10.0.0.0/24",
+  "10.0.1.0/24",
 ]
 
-nat_gateway_count = 1
+web_subnets = [
+  "10.0.100.0/24",
+  "10.0.101.0/24",
+]
+
+rds_subnets = [
+  "10.0.110.0/24",
+  "10.0.111.0/24",
+]
+
+integration_subnets = [
+  "10.0.210.0/24",
+]
+
+trusted_subnets = [
+  "62.254.63.50/32",  # KAINOS BELFAST OFFICE
+  "62.254.63.52/32",  # KAINON BELFAST VPN
+  "195.89.171.5/32",  # KAINOS BELFAST VPN backup line
+  "147.161.236.0/23", # Zscaler Ranges for UK
+  "165.225.196.0/23",
+  "165.225.198.0/23",
+  "147.161.224.0/23",
+  "165.225.80.0/22",
+  "147.161.166.0/23",
+  "147.161.224.0/23",
+  "165.225.16.0/23",
+  "165.225.80.0/22",
+  "147.161.166.0/23",
+  "147.161.140.0/23",
+  "147.161.142.0/23",
+  "147.161.144.0/23"
+]
+
+//EC2
+web_instance_count = 2
+web_instance_type  = "t2.micro"
+
+mgmt_instance_count = 1
+mgmt_instance_type  = "t2.micro"
+
+//ALB
+
+//
