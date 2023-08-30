@@ -3,6 +3,7 @@ locals {
   naming_prefix = "${var.project}-${var.environment}"
 
   public_subnet_cidrs = data.terraform_remote_state.networking.outputs.public_subnet_cidr_blocks
+  web_subnet_cidrs    = data.terraform_remote_state.networking.outputs.web_subnet_cidr_blocks
 
   ec2_web_sg_ingress_rules = [
     {
@@ -49,6 +50,27 @@ locals {
       from_port   = "0"
       to_port     = "0"
       cidr_blocks = ["0.0.0.0/0"]
+    },
+  ]
+
+  alb_web_sg_ingress_rules = [
+    {
+      type        = "HTTP from internet"
+      protocol    = "tcp"
+      from_port   = "80"
+      to_port     = "80"
+      cidr_blocks = ["0.0.0.0/0"]
+    },
+
+  ]
+
+  alb_web_sg_egress_rules = [
+    {
+      type        = "HTTP to web servers"
+      protocol    = "tcp"
+      from_port   = "0"
+      to_port     = "0"
+      cidr_blocks = local.web_subnet_cidrs
     },
   ]
 
