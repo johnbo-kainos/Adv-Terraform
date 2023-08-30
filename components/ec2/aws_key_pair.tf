@@ -9,7 +9,7 @@ resource "tls_private_key" "keygen" {
 }
 
 resource "local_file" "ssh_private_key" {
-  content  = tls_private_key.keygen.private_key_pem
-  filename = pathexpand("~/.ssh/${local.naming_prefix}-ec2-key")
+  content         = tls_private_key.keygen.private_key_pem
+  filename        = pathexpand("~/.ssh/${local.naming_prefix}-ec2-key")
   file_permission = "0400"
 }

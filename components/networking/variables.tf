@@ -41,3 +41,7 @@ variable "integration_subnets" {
 variable "nat_gateway_count" {
   type = string
 }
+
+variable "s3_state_bucket" {
+  type = string
+}

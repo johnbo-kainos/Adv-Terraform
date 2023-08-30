@@ -37,7 +37,10 @@ resource "aws_s3_bucket_policy" "bucket_policy" {
         Sid    = "AllowAccountUsersAccess",
         Effect = "Allow",
         Principal = {
-          AWS = "arn:aws:iam::${var.aws_account_id}:root"
+          AWS = [
+            "${data.aws_iam_session_context.current_user_arn.arn}",
+            "arn:aws:iam::${var.aws_account_id}:root"
+          ]
         },
         Action = ["s3:GetObject", "s3:PutObject"],
         Resource = [

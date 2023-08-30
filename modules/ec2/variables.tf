@@ -24,23 +24,30 @@ variable "instance_type" {
   default     = "t2.micro"
 }
 
+variable "instance_role" {
+  type        = string
+  description = "Role of EC2 Instance for tagging"
+
+}
+
 variable "instance_ami_id" {
   description = "EC2 instances AMI ID"
 }
 
-variable "web_subnet_ids" {
+variable "subnet_ids" {
   type        = list(string)
   description = "List of private web subnets ids."
-}
-
-variable "public_subnet_ids" {
-  type        = list(string)
-  description = "List of public subnets ids."
 }
 
 variable "vpc_id" {
   type        = string
   description = "VPC ID."
+}
+
+variable "public_ip_enabled" {
+  type        = bool
+  description = "Flag to enable/disable public ip"
+  default     = false
 }
 
 variable "sg_inbound_port" {
@@ -56,7 +63,8 @@ variable "user_data_file" {
 
 variable "keypair" {
   description = "Public keypair for SSH"
-  
+  default     = ""
+
 }
 
 variable "ec2_sg_ingress_rules" {

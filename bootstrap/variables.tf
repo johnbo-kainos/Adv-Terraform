@@ -24,4 +24,5 @@ variable "component" {
 variable "aws_account_id" {
   type        = string
   description = "ID of the AWS Account"
+  default     = "138588690193"
 }

@@ -7,11 +7,11 @@ terraform {
   }
 
   backend "s3" {
-    bucket         = "kpa23-instructor-s3-tfstate"
+    bucket         = "kpa23-instructor-state-s3-tfstate"
     key            = "state/instructor-ec2-state.tfstate"
     region         = "eu-west-1"
     encrypt        = true
-    dynamodb_table = "terraform-up-and-running-locks"
+    dynamodb_table = "kpa23-instructor-state-db-tfstate"
   }
 }
 

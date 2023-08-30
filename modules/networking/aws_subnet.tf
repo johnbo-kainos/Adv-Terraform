@@ -10,7 +10,7 @@ resource "aws_subnet" "public" {
     local.default_tags,
     tomap({ "Name" = "${local.naming_prefix}-public-subnet",
       "Vpc"        = "${local.naming_prefix}-vpc}",
-      "Availbility Zone" = "${data.aws_availability_zones.available.names[count.index % local.availability_zone_count]}" })
+    "Availbility Zone" = "${data.aws_availability_zones.available.names[count.index % local.availability_zone_count]}" })
   )
 
 }
@@ -26,7 +26,7 @@ resource "aws_subnet" "web" {
     local.default_tags,
     tomap({ "Name" = "${local.naming_prefix}-web-subnet-${count.index}",
       "Vpc"        = "${local.naming_prefix}-vpc}",
-      "Availbility Zone" = "${data.aws_availability_zones.available.names[count.index % local.availability_zone_count]}" })
+    "Availbility Zone" = "${data.aws_availability_zones.available.names[count.index % local.availability_zone_count]}" })
   )
 }
 
@@ -41,6 +41,6 @@ resource "aws_subnet" "rds" {
     local.default_tags,
     tomap({ "Name" = "${local.naming_prefix}-rds-subnet-${count.index}",
       "Vpc"        = "${local.naming_prefix}-vpc}",
-      "Availbility Zone" = "${data.aws_availability_zones.available.names[count.index % local.availability_zone_count]}" })
+    "Availbility Zone" = "${data.aws_availability_zones.available.names[count.index % local.availability_zone_count]}" })
   )
 }

@@ -19,11 +19,30 @@ variable "web_subnets" {
 }
 
 variable "web_instance_count" {
-  type = number
+  type    = number
   default = 1
 }
 
 variable "web_instance_type" {
-  type = string
+  type    = string
   default = "t2.micro"
+}
+
+variable "mgmt_instance_count" {
+  type    = number
+  default = 1
+}
+
+variable "mgmt_instance_type" {
+  type    = string
+  default = "t2.micro"
+}
+
+variable "s3_state_bucket" {
+  type = string
+}
+
+variable "trusted_subnets" {
+  type        = list(string)
+  description = "List of trusted Kainos IP addresses"
 }

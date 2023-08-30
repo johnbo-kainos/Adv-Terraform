@@ -1,15 +1,16 @@
 
-resource "aws_instance" "web" {
-  count         = var.instance_count
+resource "aws_instance" "ec2" {
+  count = var.instance_count
 
   ami           = var.instance_ami_id
   instance_type = var.instance_type
-  subnet_id     = var.web_subnet_ids[count.index % length(var.web_subnet_ids)]
+  subnet_id     = var.subnet_ids[count.index % length(var.subnet_ids)]
 
   user_data = var.user_data_file
 
   tags = {
-    Name = "${local.naming_prefix}-webserver-${count.index}"
+    Name = "${local.naming_prefix}-ec2-${count.index}"
+    Role = "${var.instance_role}"
   }
 
   lifecycle {
